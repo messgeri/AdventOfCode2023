@@ -1,6 +1,5 @@
 fun main(args: Array<String>) {
-    println("Hello World!")
+    var factory = AdventFactory()
 
-    // Try adding program arguments at Run/Debug configuration
-    println("Program arguments: ${args.joinToString()}")
+    factory.SolveDay(args[0]);
 }
