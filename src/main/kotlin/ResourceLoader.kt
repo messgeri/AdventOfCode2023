@@ -3,11 +3,12 @@ class ResourceLoader {
 
     init {
         files[1] = "Day1_Input.txt"
+        files[2] = "Day2_Input.txt"
     }
 
     fun readResource(day : Int) : String {
-        if(files[1] != null){
-            val input = this::class.java.getResourceAsStream("Day1_Input.txt")?.bufferedReader()?.readText()
+        if(files[day] != null){
+            val input = this::class.java.getResourceAsStream(files[day])?.bufferedReader()?.readText()
             if(input != null)
                 return input
         }
