@@ -1,6 +1,7 @@
 class Day1 : IAdventOfCode {
     private var solution = 0
     override val day = 1
+    override var mode = SolutionMode.Both
 
     override fun solve(input : String) {
         solution = parseText(input)

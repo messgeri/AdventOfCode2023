@@ -1,22 +1,48 @@
 class Day2 : IAdventOfCode {
     override val day = 2
+    override var mode = SolutionMode.Both
+
     //Limits: RED, GREEN, BLUE
     private val limits = arrayOf(12,13,14)
-    private var s = 0
-    var solution : Int
+    private var s = 0L
+    var solutionOneStar : Long
         get() {return s}
-        private set(value : Int){s = value}
+        private set(value : Long){s = value}
+
+    private var s2 = 0L
+    var solutionTwoStar : Long
+        get() {return s2}
+        private set(value : Long){s2 = value}
 
 
     override fun solve(input: String) {
+        when(mode){
+            SolutionMode.OneStar -> solveOneStar(input)
+            SolutionMode.TwoStar -> solveTwoStar(input)
+            SolutionMode.Both -> {
+                solveOneStar(input)
+                solveTwoStar(input)
+            }
+        }
+    }
+
+    private fun solveOneStar(input : String){
         var id = 1
-        solution = 0
+        solutionOneStar = 0
         input.lines().forEach {
-            if(isValid(parseRound(it))) solution += id
+            if(isValid(parseRound(it))) solutionOneStar += id
 
             id++
         }
-        print("The solution is: $solution")
+        println("The solution for 1 star is: $solutionOneStar")
+    }
+
+    private fun solveTwoStar(input : String){
+        solutionTwoStar = 0
+        input.lines().forEach {
+            solutionTwoStar += findPower(parseRound(it))
+        }
+        println("The solution for 2 star is: $solutionTwoStar\n")
     }
 
     fun parseRound(round : String) : ArrayList<ArrayList<Int>>{
@@ -40,7 +66,7 @@ class Day2 : IAdventOfCode {
         return retVal
     }
 
-    fun isValid(round : ArrayList<ArrayList<Int>>) : Boolean{
+    private fun isValid(round : ArrayList<ArrayList<Int>>) : Boolean{
         for(i in 0..2){
             round[i].forEach{
                 if(it > limits[i]){
@@ -49,5 +75,13 @@ class Day2 : IAdventOfCode {
             }
         }
         return true
+    }
+
+    private fun findPower(round : ArrayList<ArrayList<Int>>) : Long{
+        var power = 1L
+        round.forEach{
+            power *= it.maxOrNull()?:1
+        }
+        return power
     }
 }
