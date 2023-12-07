@@ -1,6 +1,15 @@
+import java.io.File
+
 class Day1 : IAdventOfCode {
+    var solution = 0L
+
     override fun Solve() {
-        TODO("Not yet implemented")
+        val text = this::class.java.getResourceAsStream("Day1_Input.txt")?.bufferedReader()?.readText()
+
+        if(text != null){
+            solution = ParseText(text)
+            print("The solution is: " + solution)
+        }
     }
 
     override fun Day(): Int {
@@ -26,4 +35,12 @@ class Day1 : IAdventOfCode {
         return first * 10 + last
     }
 
+    fun ParseText(input : String) : Long{
+        var retVal = 0L
+
+        input.lines().forEach {
+            retVal += ParseLine(it)
+        }
+        return retVal
+    }
 }

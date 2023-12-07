@@ -18,4 +18,16 @@ internal class Day1Test{
         assertEquals(results[2], 15)
         assertEquals(results[3], 77)
     }
+
+    @Test
+    fun TestParseText(){
+        val example = "1abc2\n" +
+                "pqr3stu8vwx\n" +
+                "a1b2c3d4e5f\n" +
+                "treb7uchet"
+
+        val result = day.ParseText(example)
+
+        assertEquals(result, 142)
+    }
 }

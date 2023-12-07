@@ -1,10 +1,13 @@
 import java.lang.NumberFormatException
 
 class AdventFactory {
-    init {
+    private var solvedChallenges = HashMap<Int, IAdventOfCode>()
 
+    init {
+        val day1 = Day1()
+
+        solvedChallenges[day1.Day()] = day1
     }
-    private val solvedChallenges = HashMap<Int, IAdventOfCode>()
 
     fun SolveDay(day : String){
         var date = 1
