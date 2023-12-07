@@ -1,22 +1,13 @@
-import java.io.File
-
 class Day1 : IAdventOfCode {
-    var solution = 0L
+    private var solution = 0L
+    override val day = 1
 
-    override fun Solve() {
-        val text = this::class.java.getResourceAsStream("Day1_Input.txt")?.bufferedReader()?.readText()
-
-        if(text != null){
-            solution = ParseText(text)
-            print("The solution is: " + solution)
-        }
+    override fun solve(input : String) {
+        solution = parseText(input)
+        print("The solution is: $solution")
     }
 
-    override fun Day(): Int {
-        return 1
-    }
-
-    fun ParseLine(input : String) : Long{
+    fun parseLine(input : String) : Long{
         var first = 0L
         var last = 0L
         var foundFirst = false
@@ -35,11 +26,11 @@ class Day1 : IAdventOfCode {
         return first * 10 + last
     }
 
-    fun ParseText(input : String) : Long{
+    fun parseText(input : String) : Long{
         var retVal = 0L
 
         input.lines().forEach {
-            retVal += ParseLine(it)
+            retVal += parseLine(it)
         }
         return retVal
     }

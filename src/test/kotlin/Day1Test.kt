@@ -5,12 +5,12 @@ internal class Day1Test{
     private val day = Day1()
 
     @Test
-    fun TestParseLine(){
+    fun testParseLine(){
         val examples = arrayOf("1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet")
         var results = ArrayList<Long>(4 )
 
         examples.forEach {
-            results.add(day.ParseLine(it))
+            results.add(day.parseLine(it))
         }
 
         assertEquals(results[0], 12)
@@ -20,13 +20,13 @@ internal class Day1Test{
     }
 
     @Test
-    fun TestParseText(){
+    fun testParseText(){
         val example = "1abc2\n" +
                 "pqr3stu8vwx\n" +
                 "a1b2c3d4e5f\n" +
                 "treb7uchet"
 
-        val result = day.ParseText(example)
+        val result = day.parseText(example)
 
         assertEquals(result, 142)
     }

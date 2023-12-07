@@ -1,4 +1,4 @@
 interface IAdventOfCode {
-    fun Solve()
-    fun Day():Int
+    val day : Int
+    fun solve(input : String)
 }

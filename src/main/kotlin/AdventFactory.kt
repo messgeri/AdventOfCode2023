@@ -6,22 +6,10 @@ class AdventFactory {
     init {
         val day1 = Day1()
 
-        solvedChallenges[day1.Day()] = day1
+        solvedChallenges[day1.day] = day1
     }
 
-    fun SolveDay(day : String){
-        var date = 1
-        try {
-            var date = day.toInt()
-        }catch (nfe : NumberFormatException){
-            println("Write the date dummy...")
-            return
-        }
-
-        if(solvedChallenges.containsKey(date)){
-            solvedChallenges[date]?.Solve()
-        }else{
-            println("Solve that day you lazy schmuck!")
-        }
+    fun getDay(date : Int) : IAdventOfCode? {
+        return solvedChallenges[date]
     }
 }
