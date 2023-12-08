@@ -26,8 +26,8 @@ fun main(args: Array<String>) {
         }
     }else if(args.size == 3 && (args [1] == "--input" || args[1] == "-i")){
         input = args[2]
-    } else if(resource.hasResource(date)){
-        input = resource.readResource(date)
+    } else if(resource.hasResource(args[0])){
+        input = resource.readResource(args[0])
     }else{
         println("No input added was added.")
     }
