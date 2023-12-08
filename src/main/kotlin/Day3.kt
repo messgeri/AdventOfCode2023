@@ -4,7 +4,7 @@ import kotlin.math.log10
 
 class Day3 : IAdventOfCode {
     override val day = 3
-    override var mode = SolutionMode.OneStar
+    override var mode = SolutionMode.Both
 
     class Coordinate(var row : Int, var column : Int){
         fun hashCoordinate() : Long{
@@ -16,17 +16,29 @@ class Day3 : IAdventOfCode {
 
     private var numbers = ArrayList<Pair<Int, Coordinate>>()
     private var symbols = HashMap<Long, Char>()
+    private var gears = HashMap<Long, Pair<Int, Int>>()
+
     private var s1 = 0L
     var solutionOneStar : Long
         get() {return s1}
         private set(value) {s1 = value}
 
+    private var s2 = 0L
+    var solutionTwoStar : Long
+        get() {return s2}
+        private set(value) {s2 = value}
+
     override fun solve(input: String) {
         cleanUp()
         fillParts(input)
-        sumUp()
-
-        println("The solution for 1 star is: $solutionOneStar")
+        when(mode){
+            SolutionMode.OneStar -> sumUpParts()
+            SolutionMode.TwoStar -> sumUpGearRatios()
+            SolutionMode.Both -> {
+                sumUpParts()
+                sumUpGearRatios()
+            }
+        }
     }
 
     private fun fillParts(input : String){
@@ -48,13 +60,25 @@ class Day3 : IAdventOfCode {
         }
     }
 
-    private fun sumUp(){
+    private fun sumUpParts(){
         numbers.forEach{
             if(hasSurroundingSymbol(it)) {
                 solutionOneStar += it.first
-                println("Number: ${it.first}, sum: $solutionOneStar")
             }
         }
+        println("The solution for 1 star is: $solutionOneStar")
+    }
+
+    private fun sumUpGearRatios(){
+        numbers.forEach{
+            saveIfSurroundedGear(it)
+        }
+        gears.toList().forEach{
+            if(it.second.first == 2){
+                solutionTwoStar += it.second.second
+            }
+        }
+        println("The solution for 2 star is: $solutionTwoStar")
     }
 
     private fun getSurrounding(p : Pair<Int, Coordinate>) : ArrayList<Coordinate>{
@@ -84,9 +108,28 @@ class Day3 : IAdventOfCode {
         return false
     }
 
+    private fun saveIfSurroundedGear(p : Pair<Int, Coordinate>){
+        val s = getSurrounding(p)
+
+        s.forEach{
+            if (symbols[it.hashCoordinate()] == '*') {
+                if(gears.containsKey(it.hashCoordinate())){
+                    val current = gears[it.hashCoordinate()]
+                    if (current != null) {
+                        gears[it.hashCoordinate()] = Pair(current.first+1, current.second * p.first)
+                    }
+                }else {
+                    gears[it.hashCoordinate()] = Pair(1, p.first)
+                }
+            }
+        }
+    }
+
     private fun cleanUp(){
         symbols.clear()
         numbers.clear()
+        gears.clear()
         solutionOneStar = 0L
+        solutionTwoStar = 0L
     }
 }
