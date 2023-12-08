@@ -1,14 +1,11 @@
+import kotlin.io.path.Path
+import kotlin.io.path.exists
+
 class ResourceLoader {
-    private var files = HashMap<Int, String>()
-
-    init {
-        files[1] = "Day1_Input.txt"
-        files[2] = "Day2_Input.txt"
-    }
-
     fun readResource(day : Int) : String {
-        if(files[day] != null){
-            val input = this::class.java.getResourceAsStream(files[day])?.bufferedReader()?.readText()
+        val path = "Day"+day.toString()+"_Input.txt"
+        if(Path(path).exists()){
+            val input = this::class.java.getResourceAsStream(path)?.bufferedReader()?.readText()
             if(input != null)
                 return input
         }
@@ -16,6 +13,7 @@ class ResourceLoader {
     }
 
     fun hasResource(day : Int) : Boolean {
-        return files.containsKey(day)
+        val path = "Day"+day.toString()+"_Input.txt"
+        return Path(path).exists()
     }
 }
