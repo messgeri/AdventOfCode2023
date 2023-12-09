@@ -7,10 +7,12 @@ class AdventFactory {
         val day1 = Day1()
         val day2 = Day2()
         val day3 = Day3()
+        val day4 = Day4()
 
         solvedChallenges[day1.day] = day1
         solvedChallenges[day2.day] = day2
         solvedChallenges[day3.day] = day3
+        solvedChallenges[day4.day] = day4
     }
 
     fun getDay(date : Int) : IAdventOfCode? {
