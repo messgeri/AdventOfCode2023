@@ -1,4 +1,4 @@
-class Day1 : IAdventOfCode {
+class Day1 : DayBase() {
     private var solution = 0
     override val day = 1
     override var mode = SolutionMode.Both
@@ -52,7 +52,6 @@ class Day1 : IAdventOfCode {
         input.lines().forEach {
             val num = parseLine(it)
             retVal += num
-            println("$it value: $num / $retVal")
         }
         return retVal
     }

@@ -2,7 +2,7 @@ import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 import kotlin.math.log10
 
-class Day3 : IAdventOfCode {
+class Day3 : DayBase() {
     override val day = 3
     override var mode = SolutionMode.Both
 
@@ -17,16 +17,6 @@ class Day3 : IAdventOfCode {
     private var numbers = ArrayList<Pair<Int, Coordinate>>()
     private var symbols = HashMap<Long, Char>()
     private var gears = HashMap<Long, Pair<Int, Int>>()
-
-    private var s1 = 0L
-    var solutionOneStar : Long
-        get() {return s1}
-        private set(value) {s1 = value}
-
-    private var s2 = 0L
-    var solutionTwoStar : Long
-        get() {return s2}
-        private set(value) {s2 = value}
 
     override fun solve(input: String) {
         cleanUp()

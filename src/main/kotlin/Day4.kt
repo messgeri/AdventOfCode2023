@@ -1,19 +1,9 @@
 import kotlin.math.log2
 
-class Day4 : IAdventOfCode {
+class Day4 : DayBase() {
     override val day = 4
     override var mode = SolutionMode.OneStar
     private var cards = ArrayList<Int>()
-
-    private var s1 = 0L
-    var solutionOneStar : Long
-        get() = s1
-        private set(value) { s1 = value }
-
-    private var s2 = 0L
-    var solutionTwoStar : Long
-        get() = s2
-        private set(value) { s2 = value }
 
     override fun solve(input: String) {
         clear()
@@ -71,7 +61,7 @@ class Day4 : IAdventOfCode {
         return prize
     }
 
-    fun clear(){
+    private fun clear(){
         solutionOneStar = 0L
         solutionTwoStar = 0L
     }

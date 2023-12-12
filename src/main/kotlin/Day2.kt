@@ -1,19 +1,9 @@
-class Day2 : IAdventOfCode {
+class Day2 : DayBase() {
     override val day = 2
     override var mode = SolutionMode.Both
 
     //Limits: RED, GREEN, BLUE
     private val limits = arrayOf(12,13,14)
-    private var s = 0L
-    var solutionOneStar : Long
-        get() {return s}
-        private set(value : Long){s = value}
-
-    private var s2 = 0L
-    var solutionTwoStar : Long
-        get() {return s2}
-        private set(value : Long){s2 = value}
-
 
     override fun solve(input: String) {
         when(mode){
